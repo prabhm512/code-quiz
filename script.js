@@ -1,11 +1,12 @@
 var start = document.querySelector('.start');
 var startBtn = document.querySelector('.startBtn');
-var questions = document.querySelector('.questions');
+var qWrapper = document.querySelector('.questions');
 var ques1 = document.querySelector('.question-1');
 var ques2 = document.querySelector('.question-2');
 var ques3 = document.querySelector('.question-3');
 var timeEl = document.querySelector(".time");
 var line = document.querySelector("hr");
+var score = document.querySelector(".finalScore");
 
 
 // var correctAns = {
@@ -34,16 +35,43 @@ var questions = [ques1, ques2, ques3];
 //     correctAns: "clearInterval()"
 // }
 
+var secondsLeft = 61;
+var secondsTillQuizStart = 4;
 
 ques1.setAttribute("style", "display:none;");
 ques2.setAttribute("style", "display:none;");
 ques3.setAttribute("style", "display:none;");
+timeEl.parentElement.style.display = 'none';
+score.style.display = 'none';
 
 function hideStart() {
     start.textContent='';
 
-        ques1.setAttribute("style", "display:block;"); 
+        ques1.setAttribute("style", "display:block;")
+
+        setTime();
         displayQuestions();
+
+}
+
+function setTime() {
+    var timeInterval = setInterval(function () {
+        timeEl.parentElement.style.display = 'block';
+        secondsLeft--;
+        timeEl.textContent = secondsLeft;
+
+        if (secondsLeft === 0) {
+            clearInterval(timeInterval);
+            finalScore();
+        }
+    }, 1000);
+}
+
+function finalScore() {
+    timeEl.textContent = '';
+    qWrapper.style.display = "none";
+    score.style.display = 'block';
+
 }
 
 
@@ -51,7 +79,6 @@ function displayQuestions() {
 
     for (let i=0; i<questions.length; i++) {
         let options = ".options-"+i;
-
         var buttons = document.querySelector(options);
         buttons.addEventListener("click", function(event) {
             event.preventDefault();

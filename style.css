@@ -7,3 +7,15 @@ button {
     font-family: 'Courier New', Courier, monospace;
     font-weight: lighter;
 }
+
+.time-left {
+    float:right;
+    margin-top: -20px;
+}
+
+.questions {
+    content: "";
+    display: block;
+    clear: both;
+    margin-top: 40px;
+}
