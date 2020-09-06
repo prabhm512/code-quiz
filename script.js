@@ -1,14 +1,31 @@
 var start = document.querySelector('.start');
 var startBtn = document.querySelector('.startBtn');
-var qWrapper = document.querySelector('.questions');
-var ques1 = document.querySelector('.question-1');
-var ques2 = document.querySelector('.question-2');
-var ques3 = document.querySelector('.question-3');
 var timeEl = document.querySelector(".time");
 var line = document.querySelector("hr");
 var finishScreen = document.querySelector(".finish-screen");
 var score = document.querySelector(".score");
 var finalScore = document.querySelector(".final-score");
+
+// Questions
+var qWrapper = document.querySelector('.questions');
+var ques1 = document.querySelector('.question-0');
+var ques2 = document.querySelector('.question-1');
+var ques3 = document.querySelector('.question-2');
+var ques4 = document.querySelector('.question-3');
+var ques5 = document.querySelector('.question-4');
+var ques6 = document.querySelector('.question-5');
+var ques7 = document.querySelector('.question-6');
+
+var questions = [ques1, ques2, ques3, ques4, ques5, ques6, ques7];
+
+ques1.setAttribute("style", "display:none;");
+ques2.setAttribute("style", "display:none;");
+ques3.setAttribute("style", "display:none;");
+ques4.setAttribute("style", "display:none;");
+ques5.setAttribute("style", "display:none;");
+ques6.setAttribute("style", "display:none;");
+ques7.setAttribute("style", "display:none;");
+
 
 
 // var correctAns = {
@@ -17,7 +34,6 @@ var finalScore = document.querySelector(".final-score");
 //     ques3: ["clearInvocation()", "clearInterval", "clearInterval()", "clear()"]
 // };
 
-var questions = [ques1, ques2, ques3];
 
 // var question1 = {
 //     ques: ques1,
@@ -37,13 +53,10 @@ var questions = [ques1, ques2, ques3];
 //     correctAns: "clearInterval()"
 // }
 
-var secondsLeft = 61;
+var secondsLeft = 141;
 var quizScore =  0;
 score.innerHTML = quizScore;
 
-ques1.setAttribute("style", "display:none;");
-ques2.setAttribute("style", "display:none;");
-ques3.setAttribute("style", "display:none;");
 timeEl.parentElement.style.display = 'none';
 finishScreen.style.display = 'none';
 
