@@ -36,7 +36,6 @@ var questions = [ques1, ques2, ques3];
 // }
 
 var secondsLeft = 61;
-var secondsTillQuizStart = 4;
 
 ques1.setAttribute("style", "display:none;");
 ques2.setAttribute("style", "display:none;");
@@ -86,6 +85,7 @@ function displayQuestions() {
             let lines = document.createElement("hr");
             let ansOutcome = document.createElement('footer');
 
+
             if(event.target.matches("button") && i < questions.length-1) {
                 questions[i].setAttribute("style", "display:none;");
                 questions[i+1].setAttribute("style", "display:block;");
@@ -121,10 +121,16 @@ function displayQuestions() {
 
                 document.querySelector(options).append(lines);
                 document.querySelector(options).append(ansOutcome);
+                for (k=0; k<4; k++) {
+                    questions[i].querySelector("#btn-"+k).disabled = true;
+                }
+                
+                
                 setTimeout(function() {
                     lines.style.display = "none";
                     ansOutcome.textContent = '';
                     document.querySelector(options).children[4].style.display = "none";
+                    finalScore();
                 }, 1000);
             }
         })
