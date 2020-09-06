@@ -5,6 +5,10 @@ var line = document.querySelector("hr");
 var finishScreen = document.querySelector(".finish-screen");
 var score = document.querySelector(".score");
 var finalScore = document.querySelector(".final-score");
+var submitBtn = document.querySelector(".submit");
+var highscores = document.querySelector(".highscores");
+var leaders = document.querySelector('.leaders');
+var initial = document.querySelector("#initials");
 
 // Questions
 var qWrapper = document.querySelector('.questions');
@@ -16,8 +20,6 @@ var ques5 = document.querySelector('.question-4');
 var ques6 = document.querySelector('.question-5');
 var ques7 = document.querySelector('.question-6');
 
-var questions = [ques1, ques2, ques3, ques4, ques5, ques6, ques7];
-
 ques1.setAttribute("style", "display:none;");
 ques2.setAttribute("style", "display:none;");
 ques3.setAttribute("style", "display:none;");
@@ -26,32 +28,9 @@ ques5.setAttribute("style", "display:none;");
 ques6.setAttribute("style", "display:none;");
 ques7.setAttribute("style", "display:none;");
 
+var questions = [ques1, ques2, ques3, ques4, ques5, ques6, ques7];
 
-
-// var correctAns = {
-//     ques1: ["baaa", "undefined", "banana", "ba aa"],
-//     ques2: ["isNaN()", "nonNaN()", "NaN()", "None of the above"], 
-//     ques3: ["clearInvocation()", "clearInterval", "clearInterval()", "clear()"]
-// };
-
-
-// var question1 = {
-//     ques: ques1,
-//     answers: ["baaa", "undefined", "banana", "ba aa"], 
-//     correctAns: "banana"
-// }
-
-// var question2 = {
-//     ques: ques2,
-//     answers: ["isNaN()", "nonNaN()", "NaN()", "None of the above"],
-//     correctAns: "isNaN()"
-// }
-
-// var question3 = {
-//     ques: ques3,
-//     answers: ["clearInvocation()", "clearInterval", "clearInterval()", "clear()"],
-//     correctAns: "clearInterval()"
-// }
+var initialsList = [];
 
 var secondsLeft = 141;
 var quizScore =  0;
@@ -59,9 +38,11 @@ score.innerHTML = quizScore;
 
 timeEl.parentElement.style.display = 'none';
 finishScreen.style.display = 'none';
+highscores.style.display = 'none';
 
-function hideStart() {
-    start.textContent='';
+
+function startQues() {
+    start.style.display='none';
 
         ques1.setAttribute("style", "display:block;")
 
@@ -76,21 +57,13 @@ function setTime() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
 
-        if (secondsLeft === 0) {
+        // Stop timer when time seconds left are  OR when last button of last question is disabled
+        if (secondsLeft === 0 || questions[questions.length-1].querySelector("#btn-3").disabled) {
             clearInterval(timeInterval);
             final();
         }
     }, 1000);
 }
-
-function final() {
-    timeEl.textContent = '';
-    qWrapper.style.display = "none";
-    finalScore.textContent = quizScore;
-    finishScreen.style.display = 'block';
-
-}
-
 
 function displayQuestions() {
 
@@ -162,4 +135,94 @@ function displayQuestions() {
 }
 
 
-startBtn.addEventListener("click", hideStart);
+function final() {
+
+    questions[questions.length-1].style.display = "none";
+    finalScore.textContent = quizScore;
+    finishScreen.style.display = 'block';
+    
+    getInitials();
+}
+
+function leaderboard() {
+
+    leaders.innerHTML = '';
+
+    // for (i=1; i<initialsList.length; i++) {
+
+    //     if (initialsList[i].score > initialsList[i-1].score) {
+    //         initialsList.splice(initialsList[i-1], 0, initialsList[i]);
+
+    //     }
+    // }
+
+    // Highscores board rendered based on what initials are entered in the input box
+
+    for (i=0; i<initialsList.length; i++) {
+        var temp = initialsList[i];
+
+        var li = document.createElement("li");
+        li.textContent = temp.initial.toUpperCase() + ":";
+
+        li.setAttribute('data-index', i);
+
+        leaders.appendChild(li);
+        li.append(' ');
+        li.append(temp.score);
+
+    }
+}
+
+function getInitials() {
+
+    // Get stored initials from localStorage
+    // Parsing the JSON string to an object
+    var storedInitials = JSON.parse(localStorage.getItem("initialsList"));
+
+    if (storedInitials !== null) {
+        initialsList = storedInitials;
+    }
+
+    leaderboard();
+}
+
+function storeInitials() {
+    // Stringify and set "initialsList" key in localStorage to initialsList array
+    localStorage.setItem("initialsList", JSON.stringify(initialsList));
+}
+
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    var initialText = initials.value.trim();
+
+    if (initialText === "") {
+
+        // Set the background of initial input box to red if left empty
+        initial.setAttribute("style", "background-color: red; opacity:0.5;")
+        return;
+    }
+
+    // array storing initials and scoree updated
+    initialsList.push({initial: initialText, score: quizScore});
+
+    finishScreen.textContent = '';
+    timeEl.parentElement.style.display = 'none';
+    highscores.style.display = 'block';
+
+
+    storeInitials();
+    leaderboard();
+});
+
+
+startBtn.addEventListener("click", startQues);
+
+document.querySelector("#backToStart").addEventListener("click", function() {
+    location.reload();
+})
+
+document.querySelector("#clearScores").addEventListener("click", function() {
+    leaders.textContent = "";
+    localStorage.clear();
+})
