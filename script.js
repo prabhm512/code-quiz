@@ -6,7 +6,9 @@ var ques2 = document.querySelector('.question-2');
 var ques3 = document.querySelector('.question-3');
 var timeEl = document.querySelector(".time");
 var line = document.querySelector("hr");
-var score = document.querySelector(".finalScore");
+var finishScreen = document.querySelector(".finish-screen");
+var score = document.querySelector(".score");
+var finalScore = document.querySelector(".final-score");
 
 
 // var correctAns = {
@@ -36,12 +38,14 @@ var questions = [ques1, ques2, ques3];
 // }
 
 var secondsLeft = 61;
+var quizScore =  0;
+score.innerHTML = quizScore;
 
 ques1.setAttribute("style", "display:none;");
 ques2.setAttribute("style", "display:none;");
 ques3.setAttribute("style", "display:none;");
 timeEl.parentElement.style.display = 'none';
-score.style.display = 'none';
+finishScreen.style.display = 'none';
 
 function hideStart() {
     start.textContent='';
@@ -61,15 +65,16 @@ function setTime() {
 
         if (secondsLeft === 0) {
             clearInterval(timeInterval);
-            finalScore();
+            final();
         }
     }, 1000);
 }
 
-function finalScore() {
+function final() {
     timeEl.textContent = '';
     qWrapper.style.display = "none";
-    score.style.display = 'block';
+    finalScore.textContent = quizScore;
+    finishScreen.style.display = 'block';
 
 }
 
@@ -92,10 +97,13 @@ function displayQuestions() {
 
                 if (event.target.matches("button.corrBtn") === false) {
                     ansOutcome.textContent = "Wrong Answer";
+                    
                 }
 
                 else {
                     ansOutcome.textContent = "Correct Answer";
+                    quizScore = quizScore+10;
+                    score.innerHTML = quizScore;
 
                 }
 
@@ -116,6 +124,8 @@ function displayQuestions() {
 
                 else {
                     ansOutcome.textContent = "Correct Answer";
+                    quizScore = quizScore+10;
+                    score.innerHTML = quizScore;
 
                 }
 
@@ -130,12 +140,13 @@ function displayQuestions() {
                     lines.style.display = "none";
                     ansOutcome.textContent = '';
                     document.querySelector(options).children[4].style.display = "none";
-                    finalScore();
+                    final();
                 }, 1000);
             }
         })
 
     }
 }
+
 
 startBtn.addEventListener("click", hideStart);
