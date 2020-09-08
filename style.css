@@ -50,6 +50,11 @@ button {
     
 }
 
+footer  {
+    font-weight: bold;
+    font-size: 17px;
+}
+
 /* 'Back to Start' button on highscores screen  */
 
 #backToStart {
@@ -97,4 +102,55 @@ button {
 .highscores {
     text-align: center;
     display: table;
+}
+
+/* Breakpoint for iPad & iPad Pro */
+@media (max-width: 1024px) {
+
+    .questions {
+        font-size: 200%;
+        margin-top: -20px;
+    }
+
+    footer {
+        font-size: 150%;
+    }
+
+    button{
+        font-size: 150%;
+    }
+
+    .time-left {
+    
+        font-size: 199%;
+        margin-bottom: -20px;
+    }
+}
+
+@media (max-width: 321px) {
+    header {
+        font-size: 64px;
+    }
+
+    #backToStart {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    #clearScores {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    ul li button, hr, footer {
+        margin-left: -30px;
+    }
+
+    .questions {
+        font-size: 80%;
+    }
+
+    #initials {
+        width: 80%;
+    }
 }

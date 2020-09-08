@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet"></head>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+</head>
 <body>
 
     <!-- Start screen -->
     <div class="start">
         <header>Javascript Challenge!</header>
+                <!-- <div class="alert alert-primary" role="alert"> -->
+                <h2><mark background-color="yellow"> 7 </mark>Multiple choice questions. <mark background-color="yellow"> 140 </mark> seconds. <mark background-color="yellow"> 10 </mark>points per correct answer.</h2> 
+                <!-- </div> -->
         <img src="images/start-page.jpeg">
-        <h2><mark background-color="yellow"> 7 </mark>Multiple choice questions. <mark background-color="yellow"> 140 </mark> seconds. <mark background-color="yellow"> 10 </mark>points per correct answer.</h2> 
         <h2>Can you get 70/70? &#128521;</h2>
         <button class="startBtn">START</button>
     </div> 
     
     <!-- Timer and Score on top right -->
-    <h3 class="time-left">Time Left: <span class="time"></span>&nbsp;&nbsp;Score: <span class="score"></span></h3>
+    <h3 class="time-left">Time Left: <span style="background-color: lightgreen;" class="time"> </span>&nbsp;&nbsp;Score: <span class="score"></span></h3>
 
 <div class="questions">
 
@@ -48,7 +52,6 @@
     <!-- Question 3 -->
     <div class="question-2">
         <h2>Q3 - The pop() method of the array does which of the following task ?</h2>
-        <h2><span class="code-ref">document.write("1 plus 1 is " + 1 + 1);</span></h2>
         <ul type="none" class="options-2">
             <li><button class="corrBtn"><span style="font-weight: bold;">a.</span> decrements the total length by 1</button></li>
             <li><button><span style="font-weight: bold;">b.</span> increments the total length by 1</button></li>

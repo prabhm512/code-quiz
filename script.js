@@ -70,6 +70,11 @@ function setTime() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
 
+        if (timeEl.textContent <=20 ) {
+            timeEl.setAttribute("style", "background-color: red;");
+        }
+
+
         // Stop timer when time seconds left are  OR when last button of last question is disabled
         if (secondsLeft === 0 || questions[questions.length-1].querySelector("#btn-3").disabled) {
             clearInterval(timeInterval);
@@ -172,7 +177,14 @@ function displayQuestions() {
 
 function final() {
 
-    questions[questions.length-1].style.display = "none";
+    ques1.setAttribute("style", "display:none;");
+    ques2.setAttribute("style", "display:none;");
+    ques3.setAttribute("style", "display:none;");
+    ques4.setAttribute("style", "display:none;");
+    ques5.setAttribute("style", "display:none;");
+    ques6.setAttribute("style", "display:none;");
+    ques7.setAttribute("style", "display:none;");
+
     finalScore.textContent = quizScore;
     finishScreen.style.display = 'block';
 
