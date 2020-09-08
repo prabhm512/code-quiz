@@ -1,21 +1,100 @@
+/* Headings 'Javascript Challenge', 'All Done!' and 'Highscores' */
+header {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 73px;
+}
+
+/* All buttons */
 button {
     background-color: purple;
     color: white;
 }
 
+/* All code references in questions */
 .code-ref {
     font-family: 'Courier New', Courier, monospace;
     font-weight: lighter;
 }
 
+/* Timer */
 .time-left {
     float:right;
-    margin-top: -20px;
 }
 
+/* All questions (wrapper) */
 .questions {
     content: "";
-    display: block;
+    display: table;
     clear: both;
     margin-top: 40px;
+}
+
+/* Start screen */
+
+.start {
+    text-align: center;
+}
+
+/* Image on start screen */
+.start img  {
+    width: 280px;
+    height: 341px;
+}
+
+/* 'Start' button on start screen */
+.startBtn {
+    height: 40px;
+    width: 80px;
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+/* 'Back to Start' button on highscores screen  */
+
+#backToStart {
+    height: 40px;
+    width: 125px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 'Clear Highscores button on highscores screen */
+
+#clearScores {
+    height: 40px;
+    width: 156px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Final score after quiz is complete */
+
+.final-score {
+    font-size: 30px;
+}
+
+/* Screen that asks for initials and shows final score*/
+.finish-screen {
+    text-align: center;
+}
+.finish-screen img{
+    margin: auto;
+}
+
+/* Highscorers */
+.leaders li{
+    background-color: thistle;
+    font-size: 27px;
+    border: 1px solid black;
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/* Highscores screen */
+
+.highscores {
+    text-align: center;
+    display: table;
 }

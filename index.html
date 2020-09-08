@@ -5,91 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet"></head>
 <body>
+
+    <!-- Start screen -->
     <div class="start">
-        <h1>Coding Challenge</h1>
-        <h2>Try to answer all questions.</h2> 
-        <button class="startBtn">Start</button>
+        <header>Javascript Challenge!</header>
+        <img src="images/start-page.jpeg">
+        <h2><mark background-color="yellow"> 7 </mark>Multiple choice questions. <mark background-color="yellow"> 140 </mark> seconds. <mark background-color="yellow"> 10 </mark>points per correct answer.</h2> 
+        <h2>Can you get 70/70? &#128521;</h2>
+        <button class="startBtn">START</button>
     </div> 
+    
+    <!-- Timer and Score on top right -->
+    <h3 class="time-left">Time Left: <span class="time"></span>&nbsp;&nbsp;Score: <span class="score"></span></h3>
 
 <div class="questions">
-    <h3 class="time-left">Time Left: <span class="time"></span>&nbsp;&nbsp;Score: <span class="score"></span></h3>
+
+    <!-- Question 1 -->
     <div class="question-0">
-        <h2>What will the output of the following code be?</h2>
+        <h2>Q1 - What will the output of the following code be?</h2>
         <h2><span class="code-ref">('b'+'a'+ +'a'+'a').toLowerCase()</span></h2>
-        <ol type="a" class="options-0">
-            <li><button>baaa</button></li>
-            <li><button>undefined</button></li>
-            <li><button class="corrBtn">banana</button></li>
-            <li><button>ba aa</button></li>
+        <ul type="none" class="options-0">
+            <li><button><span style="font-weight: bold;">a.</span> baaa</button></li>
+            <li><button><span style="font-weight: bold;">b.</span> undefined</button></li>
+            <li><button class="corrBtn"><span style="font-weight: bold;">c.</span> banana</button></li>
+            <li><button><span style="font-weight: bold;">d.</span> ba aa</button></li>
         </ul>
     </div> 
+
+    <!-- Question 2 -->
     <div class="question-1">
-        <h2>Which of the following method checks if its argument is not a number?</h2>
-        <ol type="a" class="options-1">
-            <li><button class="corrBtn">isNaN()</button></li>
-            <li><button>nonNaN()</button></li>
-            <li><button>NaN()</button></li>
-            <li><button>None of the above</button></li>
-        </ol>    
+        <h2>Q2 - Which of the following method checks if its argument is not a number?</h2>
+        <ul type="none" class="options-1">
+            <li><button class="corrBtn"><span style="font-weight: bold;">a.</span> isNaN()</button></li>
+            <li><button><span style="font-weight: bold;">b.</span> nonNaN()</button></li>
+            <li><button><span style="font-weight: bold;">c.</span> NaN()</button></li>
+            <li><button><span style="font-weight: bold;">d.</span> None of the above</button></li>
+        </ul>    
     </div>
+
+    <!-- Question 3 -->
     <div class="question-2">
-        <h2>The pop() method of the array does which of the following task ?</h2>
+        <h2>Q3 - The pop() method of the array does which of the following task ?</h2>
         <h2><span class="code-ref">document.write("1 plus 1 is " + 1 + 1);</span></h2>
-        <ol type="a" class="options-2">
-            <li><button class="corrBtn">decrements the total length by 1</button></li>
-            <li><button>increments the total length by 1</button></li>
-            <li><button>prints the first element but no effect on the length</button></li>
-            <li><button>updates the element</button></li>
-        </ol>
+        <ul type="none" class="options-2">
+            <li><button class="corrBtn"><span style="font-weight: bold;">a.</span> decrements the total length by 1</button></li>
+            <li><button><span style="font-weight: bold;">b.</span> increments the total length by 1</button></li>
+            <li><button><span style="font-weight: bold;">c.</span> prints the first element but no effect on the length</button></li>
+            <li><button><span style="font-weight: bold;">d.</span> updates the element</button></li>
+        </ul>
     </div>
+
+    <!-- Question 4 -->
     <div class="question-3">
-        <h2>Among the following, which one is a ternary operator in JavaScript?</h2>
-        <ol type="a" class="options-3">
-            <li><button>#</button></li>
-            <li><button class="corrBtn">?:</button></li>
-            <li><button>&:</button></li>
-            <li><button>::</button></li>
-        </ol>
+        <h2>Q4 - Among the following, which one is a ternary operator in JavaScript?</h2>
+        <ul type="none" class="options-3">
+            <li><button><span style="font-weight: bold;">a.</span> #</button></li>
+            <li><button class="corrBtn"><span style="font-weight: bold;">b.</span> ?:</button></li>
+            <li><button><span style="font-weight: bold;">c.</span> &:</button></li>
+            <li><button><span style="font-weight: bold;">d.</span> ::</button></li>
+        </ul>
     </div>
+
+    <!-- Question 5 -->
     <div class="question-4">
-        <h2>Among the keywords below, which one is not a statement?</h2>
-        <ol type="a" class="options-4">
-            <li><button>if</button></li>
-            <li><button>with</button></li>
-            <li><button>debugger</button></li>
-            <li><button class="corrBtn">use strict</button></li>
-        </ol>
+        <h2>Q5 - Among the keywords below, which one is not a statement?</h2>
+        <ul type="none" class="options-4">
+            <li><button><span style="font-weight: bold;">a.</span> if</button></li>
+            <li><button><span style="font-weight: bold;">b.</span> with</button></li>
+            <li><button><span style="font-weight: bold;">c.</span> debugger</button></li>
+            <li><button class="corrBtn"><span style="font-weight: bold;">d.</span> use strict</button></li>
+        </ul>
     </div>
+
+    <!-- Question 6 -->
     <div class="question-5">
-        <h2>JavaScript is designed to</h2>
-        <ol type="a" class="options-5">
-            <li><button>perform server side scripting operations</button></li>
-            <li><button>execute Queries related to databases on a server</button></li>
-            <li><button>add interactivity to html pages</button></li>
-            <li><button class="corrBtn">All of the above</button></li>
-        </ol>
+        <h2>Q6 - JavaScript is designed to</h2>
+        <ul type="none" class="options-5">
+            <li><button><span style="font-weight: bold;">a.</span> perform server side scripting operations</button></li>
+            <li><button><span style="font-weight: bold;">b.</span> execute Queries related to databases on a server</button></li>
+            <li><button><span style="font-weight: bold;">c.</span> add interactivity to html pages</button></li>
+            <li><button class="corrBtn"><span style="font-weight: bold;">d.</span> All of the above</button></li>
+        </ul>
     </div>
+
+    <!-- Question 7 -->
     <div class="question-6">
-        <h2>Which method receives the return value of setInterval() to cancel future invocations?</h2>
-        <ol type='a' class="options-6">
-            <li><button id="btn-0">clearInvocation()</button></li>
-            <li><button id="btn-1">clearInterval</button></li>
-            <li><button class="corrBtn" id="btn-2">clearInterval()</button></li>
-            <li><button id="btn-3">clear()</button></li>
-        </ol>
+        <h2>Q7 - Which method receives the return value of setInterval() to cancel future invocations?</h2>
+        <ul type='none' class="options-6">
+            <li><button id="btn-0"><span style="font-weight: bold;">a.</span> clearInvocation()</button></li>
+            <li><button id="btn-1"><span style="font-weight: bold;">b.</span> clearInterval</button></li>
+            <li><button class="corrBtn" id="btn-2"><span style="font-weight: bold;">c.</span> clearInterval()</button></li>
+            <li><button id="btn-3"><span style="font-weight: bold;">d.</span> clear()</button></li>
+        </ul>
     </div>
 </div>
+
+<!-- Screen that asks for initials -->
 <div class="finish-screen">
-    <h2>All done!</h2>
-    <h3>Your final score is: <span class="final-score"></span></h3>
+    <header>All done!</header>
+    <img src="images/improvement.jpg" width="300px" id="impr">
+    <img src="images/excellent.jpg" width="300px" id="excel">
+    <h3>Your final score is: <span class="final-score"> </span></h3>
     <h3>Enter initials: <input type="text" placeholder="Your initials" id="initials"> <button class="submit">Submit</button></h3>
     
 </div>
+
+<!-- Screen that displays highscores board -->
 <div class="highscores">
-    <h2>Highscores</h2>
-    <ul class="leaders">
+    <header>Highscores</header>
+    <ul type="none" class="leaders">
         
     </ul>
     <button id="backToStart">Back to Start</button>

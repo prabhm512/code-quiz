@@ -20,6 +20,8 @@ var ques5 = document.querySelector('.question-4');
 var ques6 = document.querySelector('.question-5');
 var ques7 = document.querySelector('.question-6');
 
+
+// Questions hidden on screen
 ques1.setAttribute("style", "display:none;");
 ques2.setAttribute("style", "display:none;");
 ques3.setAttribute("style", "display:none;");
@@ -28,19 +30,27 @@ ques5.setAttribute("style", "display:none;");
 ques6.setAttribute("style", "display:none;");
 ques7.setAttribute("style", "display:none;");
 
+// Questions put in an array
 var questions = [ques1, ques2, ques3, ques4, ques5, ques6, ques7];
 
+// Array that dynamically stores the initials and scores of quiz takers
 var initialsList = [];
 
+// Time give to complete quiz
 var secondsLeft = 141;
+
+// Quiz score initial value
 var quizScore =  0;
+
+// Quiz score displayed on webpage
 score.innerHTML = quizScore;
 
+// Timer, initials screen & leaderboard hidden
 timeEl.parentElement.style.display = 'none';
 finishScreen.style.display = 'none';
 highscores.style.display = 'none';
 
-
+// On clicking start, start menu is hidden and first question is shown.
 function startQues() {
     start.style.display='none';
 
@@ -51,8 +61,11 @@ function startQues() {
 
 }
 
+// Timer that counts down to 0
 function setTime() {
     var timeInterval = setInterval(function () {
+
+        // Timer shown
         timeEl.parentElement.style.display = 'block';
         secondsLeft--;
         timeEl.textContent = secondsLeft;
@@ -60,14 +73,22 @@ function setTime() {
         // Stop timer when time seconds left are  OR when last button of last question is disabled
         if (secondsLeft === 0 || questions[questions.length-1].querySelector("#btn-3").disabled) {
             clearInterval(timeInterval);
+            
+
+            //Function that displays final screen once time is over or questions are completed
             final();
         }
     }, 1000);
 }
 
+
+// Dynamically displays next question on page after one has been answered
 function displayQuestions() {
 
+
     for (let i=0; i<questions.length; i++) {
+
+        // Automates the display of question options
         let options = ".options-"+i;
         var buttons = document.querySelector(options);
         buttons.addEventListener("click", function(event) {
@@ -78,8 +99,13 @@ function displayQuestions() {
 
 
             if(event.target.matches("button") && i < questions.length-1) {
+
+                // current question hidden on any option being selected 
                 questions[i].setAttribute("style", "display:none;");
+
+                // next question shown 
                 questions[i+1].setAttribute("style", "display:block;");
+
 
                 if (event.target.matches("button.corrBtn") === false) {
                     ansOutcome.textContent = "Wrong Answer";
@@ -88,13 +114,18 @@ function displayQuestions() {
 
                 else {
                     ansOutcome.textContent = "Correct Answer";
+
+                    // Quiz score incremented on correct ans
                     quizScore = quizScore+10;
                     score.innerHTML = quizScore;
 
                 }
 
+                // Answer outcome printed below following question
                 document.querySelector(".options-"+(i+1)).append(lines);
                 document.querySelector(".options-"+(i+1)).append(ansOutcome);
+
+                // Answer outcome displayed for only 1 second
                 setTimeout(function() {
                     lines.style.display = "none";
                     ansOutcome.textContent = ''; 
@@ -102,6 +133,7 @@ function displayQuestions() {
                 }, 1000);
             }
 
+            // if question is last question of the quiz, answer outcome printed below current question and all current question buttons disables
             else if(event.target.matches("button") && i === questions.length-1) {
                 if (event.target.matches("button.corrBtn") === false) {
                     ansOutcome.textContent = "Wrong Answer";
@@ -117,11 +149,13 @@ function displayQuestions() {
 
                 document.querySelector(options).append(lines);
                 document.querySelector(options).append(ansOutcome);
+
+                // Disables current question buttons while answer outcome is displayed
                 for (k=0; k<4; k++) {
                     questions[i].querySelector("#btn-"+k).disabled = true;
                 }
                 
-                
+                // Answer outcome displayed for only 1 second
                 setTimeout(function() {
                     lines.style.display = "none";
                     ansOutcome.textContent = '';
@@ -134,43 +168,73 @@ function displayQuestions() {
     }
 }
 
+// Content after times runs out or last question is answered dynamically changed based on quiz score
 
 function final() {
 
     questions[questions.length-1].style.display = "none";
     finalScore.textContent = quizScore;
     finishScreen.style.display = 'block';
+
+    if (quizScore<40) {
+        document.querySelector('#impr').style.display = "block";
+        document.querySelector('#excel').style.display = "none";
+        finalScore.setAttribute("style", "background-color: red;");
+
+    }
+
+    else {
+        document.querySelector('#impr').style.display = "none";
+        document.querySelector('#excel').style.display = "block";
+        finalScore.setAttribute("style", "background-color: lightgreen;");
+    }
     
     getInitials();
 }
+
+// Highscores board dynamically changed based on who has the highest score
 
 function leaderboard() {
 
     leaders.innerHTML = '';
 
-    // for (i=1; i<initialsList.length; i++) {
+    let swapped;
 
-    //     if (initialsList[i].score > initialsList[i-1].score) {
-    //         initialsList.splice(initialsList[i-1], 0, initialsList[i]);
+    do {
+       swapped = false;
+        for (i=0; i<initialsList.length; i++) {
+     
+            if (i-1 !== -1 && initialsList[i].score > initialsList[i-1].score) {
+                let swap = initialsList[i];
+                initialsList[i] = initialsList[i-1];
+                initialsList[i-1] = swap;
+                swapped = true;
+            }
+        }
+    } while (swapped);
 
-    //     }
-    // }
+    displayLeaderboard();
+}
 
-    // Highscores board rendered based on what initials are entered in the input box
+// Highscores board rendered
 
+function displayLeaderboard() {
+
+    
     for (i=0; i<initialsList.length; i++) {
-        var temp = initialsList[i];
+        var temp = initialsList;
 
         var li = document.createElement("li");
-        li.textContent = temp.initial.toUpperCase() + ":";
-
+        li.textContent = temp[i].initial.toUpperCase() + ":";
+    
         li.setAttribute('data-index', i);
-
+    
         leaders.appendChild(li);
         li.append(' ');
-        li.append(temp.score);
+        li.append(temp[i].score);
 
     }
+
 }
 
 function getInitials() {
@@ -183,7 +247,7 @@ function getInitials() {
         initialsList = storedInitials;
     }
 
-    leaderboard();
+    // leaderboard();
 }
 
 function storeInitials() {
@@ -218,10 +282,13 @@ submitBtn.addEventListener("click", function(event) {
 
 startBtn.addEventListener("click", startQues);
 
+// Back to start button on highscores board
 document.querySelector("#backToStart").addEventListener("click", function() {
     location.reload();
 })
 
+
+// Clear highscores button on highscores board
 document.querySelector("#clearScores").addEventListener("click", function() {
     leaders.textContent = "";
     localStorage.clear();
