@@ -127,7 +127,8 @@ footer  {
     }
 }
 
-@media (max-width: 321px) {
+/* Breakpoint covering all mobile phones & surface duo */
+@media (max-width: 540px) {
     header {
         font-size: 64px;
     }
@@ -135,11 +136,13 @@ footer  {
     #backToStart {
         width: 80%;
         margin-bottom: 10px;
+        font-size: 100%;
     }
 
     #clearScores {
         width: 80%;
         margin-bottom: 10px;
+        font-size: 100%;
     }
 
     ul li button, hr, footer {
@@ -152,5 +155,16 @@ footer  {
 
     #initials {
         width: 80%;
+    }
+
+    .time-left {
+    
+        font-size: 100%;
+        margin-bottom: 0px;
+    }
+
+    .submit {
+        margin-top: 10px;
+        font-size: 100%;
     }
 }
